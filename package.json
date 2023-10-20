@@ -1,0 +1,65 @@
+{
+  "name": "snip-it",
+  "displayName": "snip.it",
+  "description": "Code Snippet Generator",
+  "version": "1.0.0",
+  "publisher": "RishabRaj",
+  "engines": {
+    "vscode": "^1.81.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "snip-it.start",
+        "title": "Start SnipIt"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "webpack": "webpack --mode development",
+    "webpack-dev": "webpack --mode development --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "test-compile": "tsc -p ./",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "pnpm run compile && pnpm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "wdio": "wdio run ./wdio.conf.ts"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.81.0",
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "20.2.5",
+    "@typescript-eslint/eslint-plugin": "^5.59.8",
+    "@typescript-eslint/parser": "^5.59.8",
+    "@vscode/test-electron": "^2.3.2",
+    "@wdio/cli": "^8.16.4",
+    "@wdio/local-runner": "^8.16.4",
+    "@wdio/mocha-framework": "^8.16.3",
+    "@wdio/spec-reporter": "^8.16.3",
+    "eslint": "^8.41.0",
+    "glob": "^8.1.0",
+    "mocha": "^10.2.0",
+    "ts-loader": "^9.4.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2",
+    "wdio-chromedriver-service": "^8.1.1",
+    "wdio-vscode-service": "^5.2.1",
+    "webdriverio": "^8.16.6",
+    "webpack": "^5.85.0",
+    "webpack-cli": "^5.1.1"
+  },
+  "dependencies": {
+    "eta": "^3.1.1"
+  }
+}

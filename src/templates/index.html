@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style id="style_element">
+      <%=it.style %>
+    </style>
+    <script src="<%= it.script %>"></script>
+    <script src="<%= it.lineScript %>"></script>
+    <script src="<%= it.customElementScript %>"></script>
+    <style>
+      <%~include("./style.css", {
+        regularTTF:it.regularTTF, bg:it.bg, semiTTF:it.semiTTF, boldTTF:it.boldTTF
+      }) %>
+    </style>
+  </head>
+
+  <body>
+    <header></header>
+    <main>
+      <svg>
+        <foreignObject y="0" x="0" class="foreignTitle" height="35">
+          <div class="header">
+            <p contenteditable="true"><%= it.fileName %></p>
+          </div>
+        </foreignObject>
+        <circle cy="17.5" cx="17.5" r="6" fill="#f84746"></circle>
+        <circle cy="17.5" cx="35" r="6" fill="#f84746"></circle>
+        <circle cy="17.5" cx="52.5" r="6" fill="#f84746"></circle>
+        <foreignObject y="35" x="0" class="foreignCode">
+          <pre>
+            <code class="language-<%= it.fileType %>"> </code>
+          </pre>
+        </foreignObject>
+        <foreignObject class="creatorName" x="0" height="22">
+          <div>
+            <p contenteditable="">@CreatorName</p>
+          </div>
+        </foreignObject>
+      </svg>
+    </main>
+    <aside>
+      <form>
+        <div class="color_options">
+          <div class="links_container">
+            <ul>
+              <li data-tab="solid_colors" class="tab_links active">Color</li>
+              <li data-tab="gradient_colors" class="tab_links">Gradient</li>
+              <li data-tab="image" class="tab_links">Image</li>
+            </ul>
+          </div>
+          <div class="content_container">
+            <div class="solid_colors tab_content active">
+              <p>Choose Color</p>
+              <color-picker
+                target-elements="[svg]"
+                target-props="[background]"
+                color="#000"
+              ></color-picker>
+              <hr />
+              <p>Common Colors</p>
+              <div class="common_colors"></div>
+            </div>
+            <div class="gradient_colors tab_content">
+              <p>Choose gradient</p>
+              <gradient-picker target-element="svg"></gradient-picker>
+              <hr />
+              <p>Common gradient</p>
+              <div class="common_gradients"></div>
+            </div>
+            <div class="image tab_content">
+              <label>
+                <div role="button" class="upload_button">
+                  <img src="<%= it.uploadImage %>" />
+                  <p>Upload Image</p>
+                </div>
+                <input
+                  type="file"
+                  class="bg_upload"
+                  accept="image/*,.jpeg,.jpg,.png"
+                />
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="text_options">
+          <div class="links_container">
+            <ul>
+              <li data-tab="padding_container" class="tab_links active">
+                Padding
+              </li>
+              <li data-tab="text_style_container" class="tab_links">Text</li>
+            </ul>
+          </div>
+          <div class="content_container">
+            <div class="padding_container tab_content active">
+              <div class="padding left"><p contenteditable>32</p></div>
+              <div class="padding right"><p contenteditable>32</p></div>
+              <div class="padding top"><p contenteditable>32</p></div>
+              <div class="padding bottom"><p contenteditable>32</p></div>
+              <div class="center"></div>
+            </div>
+            <div class="text_style_container tab_content">
+              <div class="options">
+                <color-picker
+                  target-elements="[.creatorName p]"
+                  target-props="[color]"
+                  color="#000"
+                ></color-picker>
+                <label>
+                  <input type="checkbox" checked />
+                  Show Label
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="other_options">
+          <%~ include("./partials/select.html")%>
+          <button type="button" class="download_button">download</button>
+        </div>
+      </form>
+    </aside>
+    <canvas></canvas>
+    <script>
+      <%~ include("./script.js",{selectedText:it.selectedText,bg:it.bg,fileType:it.fileType}) %>
+    </script>
+  </body>
+</html>
