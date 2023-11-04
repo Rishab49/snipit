@@ -192,7 +192,7 @@ async function makeImage() {
   let img = new Image();
 
   let bgImg = new Image();
-  bgImg.src = bg;
+  bgImg.src = img64;
   canvas.height = svg.clientHeight * 3;
   canvas.width = svg.clientWidth * 3;
 
